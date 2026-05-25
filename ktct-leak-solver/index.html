@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KTCT Leak Solver - Speedrun ôn thi</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="topbar">
+      <div class="brand">KTCT Leak Solver</div>
+      <div class="navlinks">
+        <a href="#questions">Câu hỏi</a>
+        <a href="#practice">Luyện tập</a>
+        <a href="#extend">Mở rộng môn khác</a>
+      </div>
+    </nav>
+    <section class="hero-inner">
+      <div>
+        <p class="eyebrow">Kinh tế chính trị Mác - Lênin</p>
+        <h1>Web trả lời đề leak, giải thích đúng/sai và bám nguồn theo chương.</h1>
+        <p class="lead">Dữ liệu hiện được nhập từ phần PDF đọc được và đối chiếu với bài giảng Chương 3, 4, 5. Kiến trúc dạng data-driven để sau này thêm môn khác bằng cách thêm file JSON/JS, không phải viết lại giao diện.</p>
+        <div class="actions">
+          <a class="btn primary" href="#questions">Xem đáp án</a>
+          <a class="btn secondary" href="#practice">Luyện nhanh</a>
+        </div>
+      </div>
+      <div class="stats-card">
+        <div class="stat"><b id="totalCount">0</b><span>Câu đã nhập</span></div>
+        <div class="stat"><b>3</b><span>Chương nguồn</span></div>
+        <div class="stat"><b>∞</b><span>Có thể thêm môn</span></div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="notice">
+      <strong>Lưu ý về file leak:</strong> PDF upload hiện chỉ trích xuất được một số cụm câu/đáp án. Website đã được dựng hoàn chỉnh và nhập sẵn toàn bộ phần đọc được; khi có ảnh/PDF rõ hơn, chỉ cần thêm dữ liệu vào <code>data/questions.js</code>.
+    </section>
+
+    <section id="questions" class="section">
+      <div class="section-title">
+        <p class="eyebrow">Answer key + explanation</p>
+        <h2>Danh sách câu hỏi</h2>
+      </div>
+      <div class="toolbar">
+        <input id="searchInput" type="search" placeholder="Tìm: tích lũy, độc quyền, kinh tế nhà nước..." />
+        <select id="examFilter"><option value="all">Tất cả đề</option></select>
+        <select id="chapterFilter"><option value="all">Tất cả chương</option></select>
+        <button id="resetBtn" class="btn small">Reset</button>
+      </div>
+      <div id="questionList" class="question-list"></div>
+    </section>
+
+    <section id="practice" class="section two-col">
+      <div>
+        <p class="eyebrow">Practice mode</p>
+        <h2>Luyện tập kiểu flashcard</h2>
+        <p class="muted">Bấm chọn đáp án. Web sẽ chấm ngay và giải thích vì sao phương án sai không đúng bản chất.</p>
+        <div class="practice-controls">
+          <button id="shuffleBtn" class="btn primary">Trộn câu</button>
+          <button id="nextBtn" class="btn secondary">Câu tiếp</button>
+        </div>
+      </div>
+      <div id="practiceCard" class="practice-card"></div>
+    </section>
+
+    <section id="extend" class="section extend">
+      <p class="eyebrow">Future-proof</p>
+      <h2>Cách tích hợp môn khác sau này</h2>
+      <div class="steps">
+        <div><b>1</b><span>Tạo file dữ liệu mới theo mẫu trong <code>data/questions.js</code>.</span></div>
+        <div><b>2</b><span>Thêm trường <code>subject</code>, <code>exam</code>, <code>chapter</code>, <code>question</code>, <code>options</code>, <code>correctIndex</code>, <code>wrongExplain</code>.</span></div>
+        <div><b>3</b><span>Giao diện tự render bộ lọc, đáp án, giải thích đúng/sai và nguồn.</span></div>
+      </div>
+      <pre class="code-block"><code>{
+  id: 'macro-q1',
+  subject: 'Kinh tế vĩ mô',
+  exam: 'Đề leak 1',
+  chapter: 'Chương 2',
+  question: 'GDP danh nghĩa là gì?',
+  options: ['...', '...', '...', '...'],
+  correctIndex: 0,
+  correctExplain: '...',
+  wrongExplain: ['...', '...', '...', '...'],
+  sourceQuote: '...'
+}</code></pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built for fast revision. Dữ liệu nguồn nên được kiểm tra lại khi có bản PDF/ảnh rõ hơn.</p>
+  </footer>
+
+  <script src="data/questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
